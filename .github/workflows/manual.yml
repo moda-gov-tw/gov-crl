@@ -15,13 +15,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run script file
       run: |
          .github/getcrl.sh
+         git config user.name "github-actions[bot]"
+         git config user.email "github-actions[bot]@users.noreply.github.com"
+         git add . && git commit -m "update" && git push -f
       shell: bash
-    - name: Verify action syntax
-      uses: './'
-      with:
-        github_token: '${{ secrets.GITHUB_TOKEN }}'
-        branch: '${{ github.ref }}'
 
