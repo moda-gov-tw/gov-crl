@@ -19,7 +19,14 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run script file
       run: |
-         .github/getcrl.sh
+         wget https://moica.nat.gov.tw/repository/MOICA/CRL2/complete.crl
+         openssl crl -nameopt utf8 -inform DER -text -in complete.crl | grep "Serial Number" | cut -d " " -f 7 > temp
+         awk -v RS= '/----/{next}{gsub(/\n/,"\",\"")}BEGIN{printf "\""}7' temp > temp2
+         SN="$(cat temp2)\""
+         version=$(openssl crl -nameopt utf8 -inform DER -text -in complete.crl | awk '/X509v3 CRL Number:/ {getline; gsub(/^[ \(/^[ \t]+|[ \t]+$/, ""); print}')
+         printf "{\"version\":\"$version\", \"value\":[$SN]}" > moica-crl.json
+         date '+%Y-%m-%d %H:%M.%S' > .github/last_executed.txt
+         rm temp temp2 complete.crl
          git config user.name "github-actions[bot]"
          git config user.email "github-actions[bot]@users.noreply.github.com"
          git add . && git commit -m "update" && git push -f
