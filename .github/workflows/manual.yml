@@ -17,6 +17,6 @@ jobs:
       uses: actions/checkout@v2
     - name: Run script file
       run: |
-         chmod ./getcrl.sh
+         chmod +x ./getcrl.sh
          ./getcrl.sh
       shell: bash
