@@ -15,6 +15,5 @@ jobs:
       uses: actions/checkout@v2
     - name: Run script file
       run: |
-         ls -al
-         /gov-crl/getcrl.sh
+         ./getcrl.sh
       shell: bash
