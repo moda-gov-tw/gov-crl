@@ -7,7 +7,6 @@ on:
     inputs:
       name:
         description: 'get moica crl'
-        required: true
 jobs:
   run_tests:
     runs-on: ubuntu-22.04
