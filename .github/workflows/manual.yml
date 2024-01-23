@@ -1,7 +1,7 @@
 # This is a basic workflow that is manually triggered
 name: getcrl
 
-on: 
+on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
@@ -16,7 +16,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Run script file
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
       run: |
-         chmod +x ./getcrl.sh
-         ./getcrl.sh
+         .github/getcrl.sh
+         git add .
+         git commit -m "update"
+         git push 
       shell: bash

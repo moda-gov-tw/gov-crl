@@ -10,5 +10,7 @@ SN="$(cat temp2)\""
 #取得版本號
 version=$(openssl crl -nameopt utf8 -inform DER -text -in complete.crl | awk '/X509v3 CRL Number:/ {getline; gsub(/^[ \(/^[ \t]+|[ \t]+$/, ""); print}')
 printf "{\"version\":\"$version\", \"value\":[$SN]}" > moica-crl.json
+#上次執行時間
+date '+%Y-%m-%d %H:%M.%S' > last_executed.txt
 
 rm temp temp2 complete.crl
