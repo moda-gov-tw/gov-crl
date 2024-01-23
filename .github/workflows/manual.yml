@@ -20,7 +20,6 @@ jobs:
          .github/getcrl.sh
       shell: bash
     - name: Verify action syntax
-     # The action should not publish any real changes, but should succeed.
       uses: './'
       with:
         github_token: '${{ secrets.GITHUB_TOKEN }}'
