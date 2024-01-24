@@ -1,4 +1,4 @@
-# 政府憑證廢止清冊 CRL
+# 政府憑證廢止清冊 CRL API
 每12小時更新
 
 ## 列表
@@ -6,4 +6,4 @@
   - 第二代憑證
     - CER：https://moica.nat.gov.tw/repository/Certs/MOICA2.cer
     - CRL：https://moica.nat.gov.tw/repository/MOICA/CRL2/complete.crl
-    - CRL JSON：https://cdn.jsdelivr.net/gh/moda-gov-tw/gov-crl/moica2-crl.json
+    - CRL API：https://cdn.jsdelivr.net/gh/moda-gov-tw/gov-crl/moica2-crl.json
