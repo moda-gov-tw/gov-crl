@@ -1,7 +1,7 @@
 [
   {
     "file": "moica2-crl.json"
-    "url": "https://moica.nat.gov.tw/repository/Certs/MOICA2.cer",
+    "url": "https://moica.nat.gov.tw/repository/MOICA/CRL2/complete.crl",
   },
   {
     "file": "xca1-crl.json"
