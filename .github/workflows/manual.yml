@@ -23,7 +23,7 @@ jobs:
          array_length=$(jq '. | length' ${sourcefile})
          echo ${array_length}
          for ((i = 0; i < ${array_length}; i++)); do
-           echo "OK"
+           set -x
            crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
            wget $crlfile -O complete.crl
            filename=$(cat ${sourcefile} | jq ".[$i].file" | sed 's/"//g')
