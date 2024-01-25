@@ -20,6 +20,8 @@ jobs:
     - name: Run script file
       run: |
          sourcefile='.github/source.json'
+         cat .github/source.json
+         cat ${sourcefile}
          cat ${sourcefile} | jq
          array_length=$(jq '. | length' ${sourcefile})
          echo ${array_length}
