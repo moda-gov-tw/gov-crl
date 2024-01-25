@@ -22,5 +22,29 @@
   {
     "file": "hca_crl_gen2.json",
     "url": "https://hcaocsp.nat.gov.tw/repository/HCA/CRL2/complete.crl"
-  }
+  },
+   {
+    "file": "moeaca_crl_gen1.json",
+    "url": "https://moeaca.nat.gov.tw/repository/MOEACA/CRL/complete.crl"
+  },
+  {
+    "file": "moeaca_crl_gen2.json",
+    "url": "https://moeaca.nat.gov.tw/repository/MOEACA/CRL2/complete.crl"
+  },
+  {
+    "file": "gca_crl_gen1.json",
+    "url": "https://gca.nat.gov.tw/repository/GCA4/CRL/complete.crl"
+  },
+  {
+    "file": "gca_crl_gen2.json",
+    "url": "https://gca.nat.gov.tw/repository/GCA4/CRL2/complete.crl"
+  },
+  {
+    "file": "gca_crl_gen3.json",
+    "url": "https://gca.nat.gov.tw/repository/GCA/CRL3/complete.crl"
+  },
+  {
+    "file": "gtlsca_crl_gen1.json",
+    "url": "https://gtlsca.nat.gov.tw/crl/GTLSCA-complete.crl"
+  },
 ]
