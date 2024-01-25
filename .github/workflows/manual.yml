@@ -20,6 +20,7 @@ jobs:
     - name: Run script file
       run: |
          sourcefile='.github/source.json'
+         echo $sourcefile
          array_length=$(jq '. | length' $sourcefile)
          for ((i = 0; i < $array_length; i++)); do
            crlfile=$(cat $sourcefile | jq ".[$i].url" | sed 's/"//g')
