@@ -24,8 +24,8 @@ jobs:
          echo ${array_length}
          for ((i = 0; i < ${array_length}; i++)); do
            crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
-           if [ "$crlfile" == "https://moeaca.nat.gov.tw/repository/MOEACA/CRL2/complete.cr" ]; then
-             continue
+           if [ "$crlfile" == "https://moeaca.nat.gov.tw/repository/MOEACA/CRL2/complete.crl" ]; then
+             break
            fi
            wget $crlfile -O complete.crl
            filename=$(cat ${sourcefile} | jq ".[$i].file" | sed 's/"//g')
