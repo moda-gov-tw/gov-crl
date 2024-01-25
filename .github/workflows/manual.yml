@@ -24,7 +24,7 @@ jobs:
          echo ${array_length}
          for ((i = 0; i < ${array_length}; i++)); do
            crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
-           if [ "$crlfile" == "https://moeaca.nat.gov.tw/repository/MOEACA/CRL2/complete.crl" ]; then
+           if [ $i=6 ]; then
              continue
            fi
            wget $crlfile -O complete.crl
