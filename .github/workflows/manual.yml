@@ -24,7 +24,7 @@ jobs:
          echo ${array_length}
          for ((i = 0; i < ${array_length}; i++)); do
            crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
-           wget ${crlfile}
+           wget ${crlfile} -O complete.crl
            filename=$(cat ${sourcefile} | jq ".[$i].file" | sed 's/"//g')
            openssl crl -nameopt utf8 -inform DER -text -in complete.crl | grep "Serial Number" | cut -d " " -f 7 > temp
            awk -v RS= '/----/{next}{gsub(/\n/,"\",\"")}BEGIN{printf "\""}7' temp > temp2
