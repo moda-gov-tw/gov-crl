@@ -19,7 +19,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run script file
       run: |
-         la -al
+         ls -al
          sourcefile=".github/source.json"
          array_length=$(jq '. | length' $sourcefile)
          for ((i = 0; i < $array_length; i++)); do
