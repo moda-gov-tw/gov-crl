@@ -33,6 +33,7 @@ jobs:
            printf "{\"version\":\"$version\", \"value\":[$SN]}" > temp3
            cat temp3 | jq > ${filename}
            rm temp temp2 temp3 complete.crl
+           echo "OK"
          done
          date '+%Y-%m-%d %H:%M.%S' > .github/last_executed.txt
          git config user.name "github-actions[bot]"
