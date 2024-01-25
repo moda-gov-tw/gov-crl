@@ -23,8 +23,10 @@ jobs:
          array_length=$(jq '. | length' ${sourcefile})
          echo ${array_length}
          for ((i = 0; i < ${array_length}; i++)); do
-           set -x
            crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
+           if [ "$crlfile" == "https://moeaca.nat.gov.tw/repository/MOEACA/CRL2/complete.cr" ]; then
+             continue
+           fi
            wget $crlfile -O complete.crl
            filename=$(cat ${sourcefile} | jq ".[$i].file" | sed 's/"//g')
            openssl crl -nameopt utf8 -inform DER -text -in complete.crl | grep "Serial Number" | cut -d " " -f 7 > temp
