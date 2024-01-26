@@ -24,12 +24,10 @@ jobs:
          echo ${array_length}
          for ((i = 0; i < ${array_length}; i++)); do
            crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
-           if [ $i = 6 ]; then
-             continue
-           fi
            wget $crlfile -O complete.crl
            filename=$(cat ${sourcefile} | jq ".[$i].file" | sed 's/"//g')
            openssl crl -nameopt utf8 -inform DER -text -in complete.crl | grep "Serial Number" | cut -d " " -f 7 > temp
+           echo $?
            awk -v RS= '/----/{next}{gsub(/\n/,"\",\"")}BEGIN{printf "\""}7' temp > temp2
            SN="$(cat temp2)\""
            version=$(openssl crl -nameopt utf8 -inform DER -text -in complete.crl | awk '/X509v3 CRL Number:/ {getline; gsub(/^[ \(/^[ \t]+|[ \t]+$/, ""); print}')
