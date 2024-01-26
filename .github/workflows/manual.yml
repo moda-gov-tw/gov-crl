@@ -26,8 +26,6 @@ jobs:
            crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
            wget $crlfile -O complete.crl
            filename=$(cat ${sourcefile} | jq ".[$i].file" | sed 's/"//g')
-           echo $?
-           openssl crl -nameopt utf8 -inform DER -text -in complete.crl | grep "Serial Number" | awk '{print $3}' | echo $?
            openssl crl -nameopt utf8 -inform DER -text -in complete.crl | grep "Serial Number" | awk '{print $3}'  > temp
            awk -v RS= '/----/{next}{gsub(/\n/,"\",\"")}BEGIN{printf "\""}7' temp > temp2
            SN="$(cat temp2)\""
