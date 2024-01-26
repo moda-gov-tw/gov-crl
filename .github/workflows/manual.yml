@@ -19,7 +19,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run script file
       run: |
-         set -x
          sourcefile='.github/source.json'
          array_length=$(jq '. | length' ${sourcefile})
          echo ${array_length}
