@@ -19,11 +19,13 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run script file
       run: |
+         set -x
          sourcefile='.github/source.json'
          array_length=$(jq '. | length' ${sourcefile})
          echo ${array_length}
-         for ((i = 0; i < ${array_length}; i++)); do
-           crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
+         crlfile="https://moeaca.nat.gov.tw/repository/MOEACA/CRL/complete.crl"
+         #for ((i = 0; i < ${array_length}; i++)); do
+           #crlfile=$(cat ${sourcefile} | jq ".[$i].url" | sed 's/"//g')
            wget $crlfile -O complete.crl
            filename=$(cat ${sourcefile} | jq ".[$i].file" | sed 's/"//g')
            openssl crl -nameopt utf8 -inform DER -text -in complete.crl | grep "Serial Number" | cut -d " " -f 7 > temp
@@ -34,7 +36,7 @@ jobs:
            printf "{\"version\":\"$version\", \"value\":[$SN]}" > temp3
            cat temp3 | jq > ${filename}
            rm temp temp2 temp3 complete.crl
-         done
+         #done
          date '+%Y-%m-%d %H:%M.%S' > .github/last_executed.txt
          git config user.name "github-actions[bot]"
          git config user.email "github-actions[bot]@users.noreply.github.com"
